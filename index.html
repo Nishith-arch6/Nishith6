@@ -3,185 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Adoption</title>
+    <title>Phoenix store</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f5f5f7;
+            text-align: center;
+        }
+        .sidebar {
+            width: 300px;
+            background: #333;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .sidebar p {
+            font-size: 1em;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .main-content {
+            margin-left: 320px;
+            width: calc(100% - 320px);
+            text-align: center;
+        }
+        
+        .header {
+            width: 100%;
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .search-filter {
+            margin: 20px;
+        }
+        .search-bar {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .filter-select {
+            padding: 10px;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            margin: 20px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .product-image {
+            width: 100%;
+            border-radius: 20px;
+        }
+        .product-title {
+            font-size: 1.8em;
+            margin: 15px 0;
             color: #333;
         }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem 0;
+        .product-description {
+            font-size: 1em;
+            color: #555;
             text-align: center;
         }
-
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .product-price {
+            font-size: 1.5em;
+            color: #0071e3;
+            margin: 15px 0;
         }
-
-        h2 {
-            color: #4CAF50;
+        .product-rating {
+            font-size: 1.2em;
+            color: #ff9500;
+            margin: 10px 0;
         }
-
-        .pet-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .pet-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .pet-card img {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-
-        .adoption-form {
-            margin-top: 2rem;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        input, select, textarea, button {
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        button {
-            background-color: #4CAF50;
+        .add-to-cart {
+            background-color: #0071e3;
             color: white;
             border: none;
+            padding: 12px 20px;
             cursor: pointer;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: background 0.3s ease;
         }
-
-        button:hover {
-            background-color: #45a049;
+        .add-to-cart:hover {
+            background-color: darkgray;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to the Pet Adoption Center</h1>
-        <p>Find your perfect furry friend today!</p>
-    </header>
-
-    <div class="container">
-        <section>
-            <h2>Types of Pets Available</h2>
-            <div class="pet-types">
-                <div class="pet-card">
-                    <img src="https://imgs.search.brave.com/Ke731q2vM4wOTQ752CUbmnFbVTIHQsVFNTlEJxmq8bM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMuYm9yZWRwYW5k/YS5jb20vYmxvZy93/cC1jb250ZW50L29y/Z191cGxvYWRzLzIw/MTQvMDYvbm9uZTI5/MDdfXzcwMC5qcGc" alt="Dog">
-                    <h3>Dogs</h3>
-                    <p>Friendly, loyal, and full of energy. Perfect for families and active individuals.</p>
-                </div>
-                <div class="pet-card">
-                    <img src="https://imgs.search.brave.com/1dZJIDO8_i6AbEyyf1SPmzI-T5EbGvAXKJexpoTOQsk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvZmVhdHVy/ZWQvY29vbC1jYXQt/cGljdHVyZXMtYWxq/c2VoMXl4OGxmM2Ji/cC5qcGc" alt="Cat">
-                    <h3>Cats</h3>
-                    <p>Independent and loving. Ideal for those looking for a low-maintenance companion.</p>
-                </div>
-                <div class="pet-card">
-                    <img src="https://imgs.search.brave.com/txnvlcYuC5L44h1s-mj839mU3D_A_lKz_2nNtsCbX1w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvY3V0/ZS1idW5ueS1hdC1o/b21lLXBpY3R1cmUt/NDhyaGZpbGw4MTVs/ZHIxcC5qcGc" alt="Rabbit">
-                    <h3>Rabbits</h3>
-                    <p>Gentle and quiet. Great for smaller homes and first-time pet owners.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="adoption-form">
-            <h2>Adoption Form</h2>
-            <form action="#" method="POST">
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-
-                <label for="pet">Select a Pet Type:</label>
-                <select id="pet" name="pet" onchange="showBreedOptions(this.value)">
-                    <option value="">--Select Pet--</option>
-                    <option value="dog">Dog</option>
-                    <option value="cat">Cat</option>
-                    <option value="rabbit">Rabbit</option>
-                </select>
-
-                <div id="breed-section">
-                    <label for="breed">Select a Breed:</label>
-                    <select id="breed" name="breed">
-                        <option value="">-- Please select a pet type first --</option>
-                    </select>
-                </div>
-
-                <label for="experience">Do you have prior pet experience?</label>
-                <div>
-                    <input type="radio" id="yes" name="experience" value="yes">
-                    <label for="yes">Yes</label>
-                    <input type="radio" id="no" name="experience" value="no">
-                    <label for="no">No</label>
-                </div>
-
-                <label for="reason">Why do you want to adopt a pet?</label>
-                <textarea id="reason" name="reason" rows="4" placeholder="Write a brief reason here..." required></textarea>
-
-                <label>
-                    <input type="checkbox" name="agree" required> I agree to the terms and conditions.
-                </label>
-
-                <button type="submit">Submit Application</button>
-            </form>
-        </section>
+    <div class="sidebar">
+            <h2>About Phoenix Store</h2>
+            <p>Phoenix Store is your go-to destination for premium Apple products. We offer the latest iPhones, MacBooks, iPads, and accessories.</p>
+            <p>Our goal is to provide top-quality gadgets with an excellent shopping experience.</p>
+            <p>Featured Products:</p>
+            <ul>
+                <li><strong>iPhone 16 Pro Max:</strong>5G Mobile Phone with Camera Control, 4K 120 fps Dolby Vision and a Huge Leap in Battery Life.</li>
+                <li><strong>MacBook Pro M2:</strong> M2 chip, 13-inch Retina display, 20-hour battery life.</li>
+                <li><strong>iPad Pro M2:</strong> 12.9-inch Liquid Retina XDR display, M2 chip.</li>
+                <li><strong>AirPods Pro 2:</strong> Adaptive Transparency, Personalized Spatial Audio.</li>
+            </ul>
+            <p>Browse our catalog and discover the best Apple technology with high-end specifications and sleek designs.</p>
+        </div>
+        <div class="header">PHEONIX STORE</div>
+    <div class="search-filter">
+        <input type="text" class="search-bar" placeholder="Search products..." onkeyup="filterProducts()">
+        <select class="filter-select" onchange="filterProducts()">
+            <option value="all">All</option>
+            <option value="laptop">Laptops</option>
+            <option value="phone">Phones</option>
+            <option value="accessory">Accessories</option>
+        </select>
     </div>
+    <div class="container" id="product-list">
+        <div class="card" data-category="phone">
+            <img src="https://imgs.search.brave.com/zuYo4DqwzohCX1Y940ByC2HdoZuZ9KfNFTejjfba058/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzlkL2E1/L2M3LzlkYTVjNzQ4/MzcxOTQ2ZjQ4YTg4/NzhkNTVjZWUyNTlh/LmpwZw" alt="Nokia" class="product-image">
+            <h2 class="product-title">Nokia</h2>
+            <p class="product-description">Immortal phone.</p>
+            <p class="product-price">$499.99</p>
+            <p class="product-rating">★★★★★ (5/5)</p>
+            <button class="add-to-cart" onclick="addToCart('Nokia')">Offer closes soon</button>
+        </div>
+        <div class="card" data-category="phone">
+            <img src="https://imgs.search.brave.com/S1EfqKE3cCqtP58hccww49A5Om3sgCF_v_KuXY1QkDA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YXBwbGUuY29tL25l/d3Nyb29tL2ltYWdl/cy8yMDI0LzA5L2Fw/cGxlLWRlYnV0cy1p/cGhvbmUtMTYtcHJv/LWFuZC1pcGhvbmUt/MTYtcHJvLW1heC9h/cnRpY2xlL0FwcGxl/LWlQaG9uZS0xNi1Q/cm8taGVyby0yNDA5/MDlfaW5saW5lLmpw/Zy5sYXJnZS5qcGc" alt="iPhone 16 Pro" class="product-image">
+            <h2 class="product-title">iPhone 16 Pro Max</h2>
+            <p class="product-description">5G Mobile Phone with Camera Control, 4K 120 fps Dolby Vision and a Huge Leap in Battery Life.</p>
+            <p class="product-price">$999.99</p>
+            <p class="product-rating">★★★★★ (4.8/5)</p>
+            <button class="add-to-cart" onclick="addToCart('iPhone 16 Pro Max')">Buy Now</button>
+        </div>
+        <div>    
+            <div class="card" data-category="phone">
+            <img src="https://m.media-amazon.com/images/I/61sU8OqBs4L._SX679_.jpg" alt="Samsung S25 Ultra" class="product-image">
+            <h2 class="product-title">Samsung S25 Ultra</h2>
+            <p class="product-description"> 6.9″ display, Snapdragon 8 Elite chipset, 5000 mAh battery, 1024 GB storage, 16 GB RAM, Corning Gorilla Armor 2.</p>
+            <p class="product-price">$1999.99</p>
+            <p class="product-rating">★★★★★ (4.9/5)</p>
+            <button class="add-to-cart" onclick="addToCart('Samsung S25 Ultra')">Buy Now</button>
+        </div>
+           
+            <div class="card" data-category="laptop">
+            <img src="https://m.media-amazon.com/images/I/81epBowa4UL._SX679_.jpg" alt="Lenovo IdeaPad Slim 3" class="product-image">
+            <h2 class="product-title">Lenovo IdeaPad Slim 3 </h2>
+            <p class="product-description"> 13th Gen Intel Core i7-13620H 15" (38.1cm) FHD IPS 300 Nits Thin & Light Laptop (16GB/512GB SSD/Win 11/MSO 21/1Yr ADP Free/Alexa Built-in/3 mon Game Pass/Grey/1.6Kg)</p>
+            <p class="product-price">$1000.00</p>
+            <p class="product-rating">★★★★★ (4.5/5)</p>
+            <button class="add-to-cart" onclick="addToCart('MacBook Pro M2')">Buy Now</button>
+        </div>
 
+        <div class="card" data-category="laptop">
+            <img src="https://imgs.search.brave.com/5PAAxSXLtz2XRZZv8A_MwWMBDLy9VnPU1EW11uJ539k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFOUllyZUoyY0wu/anBn" alt="MacBook Pro" class="product-image">
+            <h2 class="product-title">MacBook Pro M2</h2>
+            <p class="product-description">M2 chip, 13-inch Retina display, 20-hour battery life, and Magic Keyboard.</p>
+            <p class="product-price">$1,299.99</p>
+            <p class="product-rating">★★★★★ (4.9/5)</p>
+            <button class="add-to-cart" onclick="addToCart('MacBook Pro M2')">Buy Now</button>
+        </div>
+        
+        <div class="card" data-category="tablet">
+            <img src="https://imgs.search.brave.com/R47Q4YXkoWxZTQuMM5BQ1VaBa8K8syWwo8iB-3jaPys/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/c2hvcGxpZ2h0c3Bl/ZWQuY29tL3Nob3Bz/LzYzMzI4OS9maWxl/cy80OTYzNzEzNi84/MDB4MTAyNHgyL2Fw/cGxlLWlwYWQtcHJv/LTExLW0yLmpwZw" alt="iPad Pro" class="product-image">
+            <h2 class="product-title">iPad Pro M2</h2>
+            <p class="product-description">12.9-inch Liquid Retina XDR display, M2 chip, and Apple Pencil hover.</p>
+            <p class="product-price">$1,099.99</p>
+            <p class="product-rating">★★★★☆ (4.6/5)</p>
+            <button class="add-to-cart" onclick="addToCart('iPad Pro M2')">Buy Now</button>
+        </div>
+        <div class="card" data-category="accessory">
+            <img src="https://imgs.search.brave.com/5ewcVG8VL7Zg_RApoK_KtpxkGLbnKX1_FndnWLXqY_Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YXR0LmNvbS9zY21z/YXNzZXRzL2dsb2Jh/bC9hY2Nlc3Nvcmll/cy9hdWRpby9hcHBs/ZS9hcHBsZS1haXJw/b2RzLXByby0ybmQt/Z2VuZXJhdGlvbi13/aXRoLW1hZ3NhZmUt/Y2hhcmdpbmctY2Fz/ZS11c2ItYy9jYXJv/dXNlbC80MDU0dC0x/LnBuZw" alt="AirPods Pro" class="product-image">
+            <h2 class="product-title">AirPods Pro (2nd Gen)</h2>
+            <p class="product-description">Adaptive Transparency, Personalized Spatial Audio, and 6-hour battery life.</p>
+            <p class="product-price">$249.99</p>
+            <p class="product-rating">★★★★☆ (4.5/5)</p>
+            <button class="add-to-cart" onclick="addToCart('AirPods Pro 2')">Buy Now</button>
+        </div>
+    </div>
     <script>
-        function showBreedOptions(petType) {
-            const breedSelect = document.getElementById('breed');
-            breedSelect.innerHTML = '';
-
-            let breeds = [];
-            if (petType === 'dog') {
-                breeds = ['--Select Breed--', 'Labrador', 'German Shepherd', 'Bulldog', 'Golden Retriever'];
-            } else if (petType === 'cat') {
-                breeds = ['--Select Breed--', 'Persian', 'Siamese', 'Maine Coon', 'Ragdoll'];
-            } else if (petType === 'rabbit') {
-                breeds = ['--Select Breed--', 'Lionhead', 'Dutch', 'Mini Lop', 'Flemish Giant'];
-            }
-
-            if (breeds.length > 0) {
-                breeds.forEach(breed => {
-                    const option = document.createElement('option');
-                    option.value = breed.toLowerCase();
-                    option.textContent = breed;
-                    breedSelect.appendChild(option);
-                });
-            } else {
-                const option = document.createElement('option');
-                option.value = '';
-                option.textContent = '-- Please select a pet type first --';
-                breedSelect.appendChild(option);
-            }
+        function addToCart(productName) {
+            alert(productName + " has been added to your cart!");
+        }
+        function filterProducts() {
+            let searchInput = document.querySelector(".search-bar").value.toLowerCase();
+            let filterValue = document.querySelector(".filter-select").value;
+            let products = document.querySelectorAll(".card");
+            products.forEach(product => {
+                let title = product.querySelector(".product-title").innerText.toLowerCase();
+                let category = product.getAttribute("data-category");
+                if ((title.includes(searchInput) || searchInput === "") && (filterValue === "all" || category === filterValue)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
         }
     </script>
 </body>
