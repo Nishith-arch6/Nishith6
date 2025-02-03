@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click the Button Game</title>
+</head>
+<body>
+    <h1>Click the Button Game</h1>
+    <p>Click the button as many times as you can in 10 seconds!</p>
+    <button onclick="increaseScore()" id="clickButton">Click Me!</button>
+    <p>Score: <span id="score">0</span></p>
+    <p id="timer">Time Left: 10s</p>
+    <script>
+        let score = 0;
+        let timeLeft = 10;
+        let timer;
+
+        function increaseScore() {
+            if (timeLeft > 0) {
+                score++;
+                document.getElementById("score").innerText = score;
+            }
+        }
+
+        function countdown() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById("timer").innerText = "Time Left: " + timeLeft + "s";
+            } else {
+                document.getElementById("clickButton").disabled = true;
+                clearInterval(timer);
+                alert("Time's up! Your final score is: " + score);
+            }
+        }
+
+        timer = setInterval(countdown, 1000);
+    </script>
+</body>
+</html>
